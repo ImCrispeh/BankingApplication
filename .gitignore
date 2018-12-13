@@ -1,16 +1,13 @@
-# NetBeans specific #
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
-
-# Class Files #
-*.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
+/nbproject/
+.idea
+dist
+out
+/build/
+/WSDAssignment.iml
+/web/WEB-INF/sun-jaxws.xml
+nbbuild.xml
+catalog.xml
+web/WEB-INF/jax-ws-catalog.xml 
+web/WEB-INF/wsdl
+src/conf/xml-resources
+WSDAssignment01.iml
