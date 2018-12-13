@@ -8,18 +8,22 @@ package bankapprefresher;
 import java.util.Scanner;
 
 /**
- *
+ * Provides a command line menu after logging into a customer account
  * @author chris
  */
 public class CustomerMenu {
     Customer customer;
     Scanner scan;
     
+    //Constructor
     public CustomerMenu(Customer customer) {
         scan = new Scanner(System.in);
         this.customer = customer;
     }
     
+    /**
+     * Provides initial message and displays menu options
+     */
     public void showCustomerMenu() {
         System.out.println("\nWelcome " + customer.getName());
         System.out.println("Customer ID: " + customer.getId());
@@ -40,6 +44,10 @@ public class CustomerMenu {
         }
     }
     
+    /**
+     * Calls specific handler based on user input
+     * @param choice user input from menu
+     */
     public void customerMenuSelection(String choice) {
         choice = choice.toLowerCase();
     }

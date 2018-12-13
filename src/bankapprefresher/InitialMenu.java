@@ -14,10 +14,14 @@ import java.util.Scanner;
 public class InitialMenu {
     Scanner scan;
 
+    //Constructor
     public InitialMenu() {
         scan = new Scanner(System.in);
     }
-
+    
+    /**
+     * Provides initial message and displays menu options
+     */
     public void showInitialMenu() {
         System.out.println("Welcome to BANKING APPLICATION");
         System.out.println("------------------------------");
@@ -35,6 +39,10 @@ public class InitialMenu {
         }
     }
 
+    /**
+     * Calls specific handler based on user input
+     * @param choice user input from menu
+     */
     public void initialMenuSelection(String choice) {
         choice = choice.toLowerCase();
         switch (choice) {
@@ -53,6 +61,9 @@ public class InitialMenu {
         }
     }
 
+    /**
+     * Logs into application as specific customer if they exist
+     */
     public void login() {
         System.out.println("\nPlease enter your credentials");
         System.out.println("------------------------------");
@@ -70,6 +81,9 @@ public class InitialMenu {
         }
     }
     
+    /**
+     * Registers a new customer into the application
+     */
     public void register() {
         System.out.println("\nPlease enter your preferred credentials");
         System.out.println("------------------------------");

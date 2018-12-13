@@ -8,24 +8,42 @@ package bankapprefresher;
 import java.util.*;
 
 /**
- *
+ * Overall collection of customers, provides the ability to add, remove and login
  * @author chris
  */
 public class Customers {
     private static ArrayList<Customer> customers = new ArrayList<>();
     
+    /**
+     * Get overall list of customers
+     * @return customers
+     */
     public static ArrayList<Customer> getCustomers() {
         return customers;
     }
     
+    /**
+     * Adds specified customer to collection
+     * @param customer 
+     */
     public static void addCustomer(Customer customer) {
         customers.add(customer);
     }
     
+    /**
+     * Removes customer from collection
+     * @param customer 
+     */
     public static void deleteCustomer(Customer customer) {
         customers.remove(customer);
     }
     
+    /**
+     * Checks if user matching specific credentials exists before allowing login
+     * @param id
+     * @param password
+     * @return 
+     */
     public static Customer login(int id, String password) {
         for (Customer customer : customers) {
             if (id == customer.getId() && password.equals(customer.getPassword())) {
