@@ -13,20 +13,16 @@ import java.util.Optional;
  * @author chris
  */
 public class Accounts {
-    private ArrayList<Account> accounts;
+    private static ArrayList<Account> accounts = new ArrayList<>();;
     
-    public Accounts() {
-        accounts = new ArrayList<>();
-    }
-    
-    public void createAccount(int accountNumber, String accountName) {
-        Account newAccount = new Account(accountNumber, accountName);
+    public static void createAccount(int accountNumber, int customerId, String accountName) {
+        Account newAccount = new Account(accountNumber, customerId, accountName);
         accounts.add(newAccount);
     }
     
-    public boolean removeAccount(int accountNumber) {
+    public static boolean removeAccount(int accountNumber, int customerId) {
         Optional<Account> account = accounts.stream()
-                .filter(acc -> acc.getAccountNumber() == accountNumber)
+                .filter(acc -> acc.getAccountNumber() == accountNumber && acc.getCustomerId() == customerId)
                 .findFirst();
         
         if (account.isPresent()) {

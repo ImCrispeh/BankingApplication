@@ -12,21 +12,21 @@ import java.util.*;
  * @author chris
  */
 public class Customers {
-    private ArrayList<Customer> customers = new ArrayList<>();
+    private static ArrayList<Customer> customers = new ArrayList<>();
     
-    public ArrayList<Customer> getCustomers() {
+    public static ArrayList<Customer> getCustomers() {
         return customers;
     }
     
-    public void addCustomer(Customer customer) {
+    public static void addCustomer(Customer customer) {
         customers.add(customer);
     }
     
-    public void deleteCustomer(Customer customer) {
+    public static void deleteCustomer(Customer customer) {
         customers.remove(customer);
     }
     
-    public Customer login(int id, String password) {
+    public static Customer login(int id, String password) {
         for (Customer customer : customers) {
             if (id == customer.getId() && password.equals(customer.getPassword())) {
                 return customer;

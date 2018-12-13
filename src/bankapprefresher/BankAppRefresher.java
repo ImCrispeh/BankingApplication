@@ -15,7 +15,8 @@ public class BankAppRefresher {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        InitialMenu menu = new InitialMenu();
+        menu.showInitialMenu();
     }
     
 }

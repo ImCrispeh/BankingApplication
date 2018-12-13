@@ -15,13 +15,11 @@ public class Customer {
     private String name;
     private int id;
     private String password;
-    private Accounts accounts;
 
     public Customer(int id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;
-        this.accounts = new Accounts();
     }
 
     public String getName() {
@@ -34,10 +32,6 @@ public class Customer {
 
     public String getPassword() {
         return password;
-    }
-
-    public Accounts getAccounts() {
-        return accounts;
     }
 
     public void setName(String name) {

@@ -12,13 +12,10 @@ import java.util.*;
  * @author chris
  */
 public class Util {
-    private ArrayList<Integer> usedAccountNumbers;
+    private static ArrayList<Integer> usedAccountNumbers = new ArrayList<>();
+    private static int nextCustomerId = 0;
     
-    public Util() {
-        usedAccountNumbers = new ArrayList<>();
-    }
-    
-    public int generateAccountNumber() {
+    public static int generateAccountNumber() {
         int accountNum;
         Random rand = new Random();
         do {
@@ -26,5 +23,10 @@ public class Util {
         } while (!usedAccountNumbers.contains(accountNum));
         usedAccountNumbers.add(accountNum);
         return accountNum;
+    }
+    
+    public static int generateCustomerId() {
+        nextCustomerId++;
+        return nextCustomerId;
     }
 }
