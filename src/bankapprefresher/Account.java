@@ -50,9 +50,7 @@ public class Account {
      * @param amount amount to withdraw
      */
     public void withdraw(int amount) {
-        if (balance >= amount) {
-            balance -= amount;
-        }
+        balance -= amount;
     }
     
     /**

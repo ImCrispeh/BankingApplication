@@ -8,7 +8,7 @@ package bankapprefresher;
 import java.util.ArrayList;
 
 /**
- *
+ * Base class for a customer
  * @author chris
  */
 public class Customer {
@@ -16,12 +16,14 @@ public class Customer {
     private int id;
     private String password;
 
+    //Constructor
     public Customer(int id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;
     }
 
+    //Getters and setters
     public String getName() {
         return name;
     }

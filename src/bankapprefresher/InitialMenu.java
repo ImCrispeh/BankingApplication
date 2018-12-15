@@ -12,7 +12,7 @@ import java.util.Scanner;
  * @author chris
  */
 public class InitialMenu {
-    Scanner scan;
+    private Scanner scan;
 
     //Constructor
     public InitialMenu() {
@@ -24,10 +24,10 @@ public class InitialMenu {
      */
     public void showInitialMenu() {
         System.out.println("Welcome to BANKING APPLICATION");
-        System.out.println("------------------------------");
         String input = "";
 
         while (!input.equals("x")) {
+            System.out.println("------------------------------");
             System.out.println("OPTIONS");
             System.out.println("------------------------------");
             System.out.println("a. Login");
@@ -43,7 +43,8 @@ public class InitialMenu {
      * Calls specific handler based on user input
      * @param choice user input from menu
      */
-    public void initialMenuSelection(String choice) {
+    private void initialMenuSelection(String choice) {
+        System.out.println();
         choice = choice.toLowerCase();
         switch (choice) {
             case "a":
@@ -64,8 +65,8 @@ public class InitialMenu {
     /**
      * Logs into application as specific customer if they exist
      */
-    public void login() {
-        System.out.println("\nPlease enter your credentials");
+    private void login() {
+        System.out.println("Please enter your credentials");
         System.out.println("------------------------------");
         System.out.print("User ID: ");
         int accountId = Integer.parseInt(scan.nextLine());
@@ -84,8 +85,8 @@ public class InitialMenu {
     /**
      * Registers a new customer into the application
      */
-    public void register() {
-        System.out.println("\nPlease enter your preferred credentials");
+    private void register() {
+        System.out.println("Please enter your preferred credentials");
         System.out.println("------------------------------");
         System.out.print("Name: ");
         String name = scan.nextLine();

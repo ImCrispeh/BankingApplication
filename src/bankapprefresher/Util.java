@@ -24,7 +24,7 @@ public class Util {
         Random rand = new Random();
         do {
             accountNum = rand.nextInt(999999) + 1;
-        } while (!usedAccountNumbers.contains(accountNum));
+        } while (usedAccountNumbers.contains(accountNum));
         usedAccountNumbers.add(accountNum);
         return accountNum;
     }

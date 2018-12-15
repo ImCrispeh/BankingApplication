@@ -15,6 +15,25 @@ import java.util.Optional;
 public class Accounts {
     private static ArrayList<Account> accounts = new ArrayList<>();;
     
+    public static ArrayList<Account> getAllAccounts() {
+        return accounts;
+    }
+    
+    public static ArrayList<Account> getCustomerAccounts(int customerId) {
+        ArrayList<Account> customerAccounts = new ArrayList<>();
+        for (Account account : accounts) {
+            if (account.getCustomerId() == customerId) {
+                customerAccounts.add(account);
+            }
+        }
+        return customerAccounts;
+    }
+    
+    public static void updateAccounts(ArrayList<Account> oldAccounts, ArrayList<Account> newAccounts) {
+        accounts.removeAll(oldAccounts);
+        accounts.addAll(newAccounts);
+    }
+    
     /**
      * Creates an account with specified parameters and adds it to the collection
      * @param accountNumber
