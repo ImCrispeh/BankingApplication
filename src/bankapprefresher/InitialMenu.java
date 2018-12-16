@@ -54,12 +54,13 @@ public class InitialMenu {
                 register();
                 break;
             case "x":
-                System.out.println("Exiting application\n");
+                System.out.println("Exiting application");
                 break;
             default:
-                System.out.println("Invalid input\n");
+                System.out.println("Invalid input");
                 break;
         }
+        System.out.println("");
     }
 
     /**
@@ -78,7 +79,7 @@ public class InitialMenu {
             CustomerMenu custMenu = new CustomerMenu(customer);
             custMenu.showCustomerMenu();
         } else {
-            System.out.println("Error: invalid account credentials\n");
+            System.out.println("Error: invalid account credentials");
         }
     }
     

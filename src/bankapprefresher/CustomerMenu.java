@@ -16,6 +16,7 @@ public class CustomerMenu {
     private Scanner scan;
     private ArrayList<Account> initialCustomerAccounts;
     private ArrayList<Account> customerAccounts;
+    private boolean isMenuEnd;
     
     //Constructor
     public CustomerMenu(Customer customer) {
@@ -23,6 +24,7 @@ public class CustomerMenu {
         this.customer = customer;
         initialCustomerAccounts = Accounts.getCustomerAccounts(customer.getId());
         customerAccounts = initialCustomerAccounts;
+        isMenuEnd = false;
     }
     
     /**
@@ -33,14 +35,15 @@ public class CustomerMenu {
         System.out.println("Customer ID: " + customer.getId());
         String input = "";
         
-        while (!input.equals("x")) {
+        while (!isMenuEnd) {
             System.out.println("------------------------------");
             System.out.println("OPTIONS");
             System.out.println("------------------------------");
             System.out.println("a. View accounts");
             System.out.println("b. Create account");
             System.out.println("c. Select account");
-            System.out.println("d. Edit customer details");
+            System.out.println("d. Edit customer name");
+            System.out.println("e. Delete customer");
             System.out.println("x. Logout");
             System.out.print("Please make a selection: ");
             input = scan.nextLine();
@@ -66,7 +69,10 @@ public class CustomerMenu {
                 selectAccount();
                 break;
             case "d":
-                editDetails();
+                editName();
+                break;
+            case "e":
+                deleteCustomer();
                 break;
             case "x":
                 logout();
@@ -118,16 +124,42 @@ public class CustomerMenu {
         }
     }
     
-    private void editDetails() {
+    private void editName() {
+        System.out.println("Please your new name");
+        System.out.println("------------------------------");
+        System.out.print("Name: ");
+        String name = scan.nextLine();
+        System.out.println("Changing from " + customer.getName() + " to " + name);
         
+        boolean isChoice = false;
+        while (!isChoice) {
+            System.out.print("Confirm? (y/n): ");
+            String confirmation = scan.nextLine().toLowerCase();
+            switch (confirmation) {
+                case "y":
+                    customer.setName(name);
+                    isChoice = true;
+                    break;
+                case "n":
+                    isChoice = true;
+                    break;
+                default:
+                    System.out.println("Invalid input");
+                    break;
+            }
+        }
+    }
+    
+    private void deleteCustomer() {
+        System.out.println("Removing customer and accounts from the system");
+        Accounts.removeCustomerAccounts(initialCustomerAccounts);
+        Customers.deleteCustomer(customer);
+        isMenuEnd = true;
     }
     
     private void logout() {
-        System.out.println("Logging out\n");
+        System.out.println("Logging out");
         Accounts.updateAccounts(initialCustomerAccounts, customerAccounts);
-    }
-    
-    private void accountAction() {
-        
+        isMenuEnd = true;
     }
 }

@@ -14,11 +14,13 @@ import java.util.*;
 public class AccountMenu {
     private Account account;
     private Scanner scan;
+    private boolean isMenuEnd;
     
     //Constructor
     public AccountMenu(Account account) {
         scan = new Scanner(System.in);
         this.account = account;
+        isMenuEnd = false;
     }
     
     /**
@@ -28,7 +30,7 @@ public class AccountMenu {
         System.out.println("\nPerforming actions on " + account.getAccountName() + " (" + account.getAccountNumber() + ")");
         String input = "";
         
-        while (!input.equals("x")) {
+        while (!isMenuEnd) {
             System.out.println("------------------------------");
             System.out.println("OPTIONS");
             System.out.println("------------------------------");
@@ -36,6 +38,7 @@ public class AccountMenu {
             System.out.println("b. Deposit");
             System.out.println("c. Transfer");
             System.out.println("d. Rename account");
+            System.out.println("e. Delete account");
             System.out.println("x. Go back");
             System.out.print("Please make a selection: ");
             input = scan.nextLine();
@@ -58,13 +61,16 @@ public class AccountMenu {
                 deposit();
                 break;
             case "c":
-               
+                transfer();
                 break;
             case "d":
-                
+                renameAccount();
+                break;
+            case "e":
+                deleteAccount();
                 break;
             case "x":
-                
+                goBack();
                 break;
             default:
                 System.out.println("Invalid input");
@@ -93,5 +99,24 @@ public class AccountMenu {
         int amount = Integer.parseInt(scan.nextLine());
         account.deposit(amount);
         System.out.println("Deposit sucessful");
+    }
+    
+    private void transfer() {
+        
+    }
+    
+    private void renameAccount() {
+        
+    }
+    
+    private void deleteAccount() {
+        System.out.println("Deleting account and returning to main menu");
+        Accounts.removeAccount(account.getAccountNumber());
+        isMenuEnd = true;
+    }
+    
+    private void goBack() {
+        System.out.println("Returning to main menu");
+        isMenuEnd = true;
     }
 }

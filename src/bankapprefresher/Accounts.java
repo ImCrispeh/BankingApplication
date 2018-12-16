@@ -46,21 +46,20 @@ public class Accounts {
     }
     
     /**
-     * Removes an account from the collection after checking that it exists
+     * Removes an account from the collection
      * @param accountNumber
-     * @param customerId
-     * @return if the account was found/removed or not
      */
-    public static boolean removeAccount(int accountNumber, int customerId) {
+    public static void removeAccount(int accountNumber) {
         Optional<Account> account = accounts.stream()
-                .filter(acc -> acc.getAccountNumber() == accountNumber && acc.getCustomerId() == customerId)
+                .filter(acc -> acc.getAccountNumber() == accountNumber)
                 .findFirst();
         
         if (account.isPresent()) {
             accounts.remove(account.get());
-            return true;
-        } else {
-            return false;
         }
+    }
+    
+    public static void removeCustomerAccounts(ArrayList<Account> customerAccounts) {
+        accounts.removeAll(customerAccounts);
     }
 }
