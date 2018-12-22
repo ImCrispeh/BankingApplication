@@ -1,0 +1,1 @@
+Small command line banking application made as a general refresher
