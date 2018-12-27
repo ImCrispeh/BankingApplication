@@ -18,14 +18,15 @@ class Board extends React.Component {
         };
     }
 
+    resetBoard() {
+        this.setState({
+            squares: Array(9).fill(null),
+            xIsNext: true,
+        });
+    }
+
     handleClick(i) {
         const squares = this.state.squares.slice();
-
-        /*if (this.state.xIsNext) {
-               squares[i] = 'X';
-           } else {
-               squares[i] = 'O';
-           }*/
         if (squares[i] == null && !calculateWinner(squares)) {
             squares[i] = this.state.xIsNext ? 'X' : 'O';
 
@@ -50,10 +51,6 @@ class Board extends React.Component {
         let status;
         if (winner) {
             status = 'Winner: ' + winner;
-            this.setState({
-                squares: Array(9).fill(null),
-                xIsNext: true,
-            });
         } else {
             status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
         }
@@ -76,6 +73,7 @@ class Board extends React.Component {
                     {this.renderSquare(7)}
                     {this.renderSquare(8)}
                 </div>
+                <div className="reset"><button onClick={() => this.resetBoard()}>Reset</button></div>
             </div>
         );
     }
