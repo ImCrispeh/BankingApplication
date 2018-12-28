@@ -1,0 +1,1 @@
+Basic staff management application made from following an Angular JS tutorial https://angular.io/tutorial
