@@ -1,0 +1,12 @@
+<div>
+    Months:
+    <select (change)='onChange($event)'>
+        <option *ngFor='let month of months'>{{ month }}</option>
+    </select>
+</div>
+<div>
+    Even month = <span *ngIf='isEvenMonth; else isOddMonth'>True</span>
+    <ng-template #isOddMonth>False</ng-template>
+</div>
+<div>
+</div>
