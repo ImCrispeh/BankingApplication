@@ -4,9 +4,9 @@
         <option *ngFor='let month of months'>{{ month }}</option>
     </select>
 </div>
-<div>
-    Even month = <span *ngIf='isEvenMonth; else isOddMonth'>True</span>
-    <ng-template #isOddMonth>False</ng-template>
+<div [ngStyle] = 'monthStyles'>
+    <span *ngIf='isEvenMonth; else isOddMonth'>Even month</span>
+    <ng-template #isOddMonth>Odd month</ng-template>
 </div>
 <div>
 </div>

@@ -7,14 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class MonthsComponent implements OnInit {
+    monthStyles: {};
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     isEvenMonth = false;
 
     public onChange(event) {
-        this.isEvenMonth = event.currentTarget.selectedIndex % 2 != 0;    
+        this.isEvenMonth = event.currentTarget.selectedIndex % 2 != 0;
+        this.setMonthStyles(); 
     }
 
-    constructor() { }
+    setMonthStyles() {
+        this.monthStyles = {
+            'font-weight': this.isEvenMonth ? 'normal' : 'bold',
+            'color': this.isEvenMonth ? 'red' : 'blue'
+        };
+    }
+
+    constructor() {
+        this.setMonthStyles();
+    }
 
     ngOnInit() {
     }
