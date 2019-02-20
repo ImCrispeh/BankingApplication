@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d8b0812-5a69-4af7-914a-9a0c16bd0708" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Testing_JUnitMockito.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BankApp_Java/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BankApp_Java/nbproject/private/private.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_junit_jupiter_junit_jupiter_api_5_4_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing_JUnitMockito.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_JUnitMockito.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Calculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CalculatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculatorTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,18 +26,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Calculator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-              <folding>
-                <element signature="e#60#61#0" expanded="true" />
-                <element signature="e#88#89#0" expanded="true" />
-                <element signature="e#127#128#0" expanded="true" />
-                <element signature="e#155#156#0" expanded="true" />
-                <element signature="e#196#197#0" expanded="true" />
-                <element signature="e#224#225#0" expanded="true" />
-                <element signature="e#264#265#0" expanded="true" />
-                <element signature="e#292#293#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="13" selection-start-column="13" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -45,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/CalculatorTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="16" selection-start-line="16" selection-end-line="16" selection-end-column="40" />
+            <state relative-caret-position="207">
+              <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,8 +47,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="184">
+              <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -85,9 +75,16 @@
         <option value="$PROJECT_DIR$/src/Calculator.java" />
         <option value="$PROJECT_DIR$/src/CalculatorTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/Calculator.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/CalculatorTest.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -138,19 +135,21 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Downloaded.Files.Path" value="D:\Chris\Desktop\Stuff\Side Programming Stuff\" />
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550624148907" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550634211298" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../mockito-all-2.0.2-beta.jar!/" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../junit5-api-5.0.0-ALPHA.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -172,7 +171,16 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CalculatorTest.shouldAdd (1)">
+  <component name="RunManager" selected="JUnit.CalculatorTest (1)">
+    <configuration name="CalculatorTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Testing_JUnitMockito" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CalculatorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CalculatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Testing_JUnitMockito" />
       <extension name="coverage">
@@ -188,7 +196,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CalculatorTest.shouldAdd (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CalculatorTest.shouldAdd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Testing_JUnitMockito" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CalculatorTest" />
+      <option name="METHOD_NAME" value="shouldAdd" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CalculatorTest.shouldAdd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Testing_JUnitMockito" />
       <extension name="coverage">
         <pattern>
@@ -198,16 +216,6 @@
       </extension>
       <option name="PACKAGE_NAME" value="main.java" />
       <option name="MAIN_CLASS_NAME" value="main.java.CalculatorTest" />
-      <option name="METHOD_NAME" value="shouldAdd" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CalculatorTest.shouldAdd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Testing_JUnitMockito" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CalculatorTest" />
       <option name="METHOD_NAME" value="shouldAdd" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -224,9 +232,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CalculatorTest.shouldSub" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Testing_JUnitMockito" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.java.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main.java" />
+      <option name="MAIN_CLASS_NAME" value="main.java.CalculatorTest" />
+      <option name="METHOD_NAME" value="shouldSub" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CalculatorTest.shouldAdd (1)" />
+        <item itemvalue="JUnit.CalculatorTest (1)" />
         <item itemvalue="JUnit.CalculatorTest" />
         <item itemvalue="JUnit.CalculatorTest.shouldSub" />
         <item itemvalue="JUnit.CalculatorTest.shouldAdd" />
@@ -247,59 +271,58 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CalculatorTest_shouldSub - 2019.02.20 at 11h 10m 57s.xml">
-      <configuration name="CalculatorTest.shouldSub" configurationId="JUnit" />
+    <history-entry file="CalculatorTest_(1) - 2019.02.20 at 14h 29m 09s.xml">
+      <configuration name="CalculatorTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CalculatorTest_shouldSub - 2019.02.20 at 11h 11m 02s.xml">
-      <configuration name="CalculatorTest.shouldSub" configurationId="JUnit" />
+    <history-entry file="CalculatorTest_(1) - 2019.02.20 at 14h 29m 20s.xml">
+      <configuration name="CalculatorTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CalculatorTest_shouldAdd_(1) - 2019.02.20 at 11h 47m 00s.xml">
-      <configuration name="CalculatorTest.shouldAdd (1)" configurationId="JUnit" />
+    <history-entry file="CalculatorTest_(1) - 2019.02.20 at 14h 31m 16s.xml">
+      <configuration name="CalculatorTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CalculatorTest - 2019.02.20 at 11h 47m 28s.xml">
-      <configuration name="CalculatorTest" configurationId="JUnit" />
+    <history-entry file="CalculatorTest_(1) - 2019.02.20 at 14h 33m 07s.xml">
+      <configuration name="CalculatorTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CalculatorTest - 2019.02.20 at 11h 48m 29s.xml">
-      <configuration name="CalculatorTest" configurationId="JUnit" />
+    <history-entry file="CalculatorTest_(1) - 2019.02.20 at 14h 37m 00s.xml">
+      <configuration name="CalculatorTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CalculatorTest_shouldAdd_(1) - 2019.02.20 at 11h 51m 43s.xml">
-      <configuration name="CalculatorTest.shouldAdd (1)" configurationId="JUnit" />
+    <history-entry file="CalculatorTest_(1) - 2019.02.20 at 14h 37m 13s.xml">
+      <configuration name="CalculatorTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CalculatorTest - 2019.02.20 at 11h 53m 11s.xml">
-      <configuration name="CalculatorTest" configurationId="JUnit" />
+    <history-entry file="CalculatorTest_(1) - 2019.02.20 at 14h 37m 43s.xml">
+      <configuration name="CalculatorTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CalculatorTest_shouldAdd_(1) - 2019.02.20 at 11h 55m 23s.xml">
-      <configuration name="CalculatorTest.shouldAdd (1)" configurationId="JUnit" />
+    <history-entry file="CalculatorTest_(1) - 2019.02.20 at 14h 40m 57s.xml">
+      <configuration name="CalculatorTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CalculatorTest_shouldAdd_(1) - 2019.02.20 at 11h 55m 33s.xml">
-      <configuration name="CalculatorTest.shouldAdd (1)" configurationId="JUnit" />
+    <history-entry file="CalculatorTest_(1) - 2019.02.20 at 14h 42m 10s.xml">
+      <configuration name="CalculatorTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CalculatorTest_shouldAdd_(1) - 2019.02.20 at 11h 55m 51s.xml">
-      <configuration name="CalculatorTest.shouldAdd (1)" configurationId="JUnit" />
+    <history-entry file="CalculatorTest_(1) - 2019.02.20 at 14h 42m 55s.xml">
+      <configuration name="CalculatorTest (1)" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23154363" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23825504" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" weight="0.32941177" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932885" visible="true" weight="0.32941177" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" weight="0.32941177" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3297546" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32941177" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50067115" side_tool="true" weight="0.32941177" />
       <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32941177" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -312,13 +335,7 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Tests.java" />
-    <entry file="file://$PROJECT_DIR$/src/TestRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TestRunner.java" />
     <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -347,34 +364,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Calculator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Calculator.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-          <folding>
-            <element signature="e#60#61#0" expanded="true" />
-            <element signature="e#88#89#0" expanded="true" />
-            <element signature="e#127#128#0" expanded="true" />
-            <element signature="e#155#156#0" expanded="true" />
-            <element signature="e#196#197#0" expanded="true" />
-            <element signature="e#224#225#0" expanded="true" />
-            <element signature="e#264#265#0" expanded="true" />
-            <element signature="e#292#293#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="184">
+          <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/CalculatorTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="16" selection-start-line="16" selection-end-line="16" selection-end-column="40" />
+        <state relative-caret-position="207">
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -437,7 +444,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.20132013" />
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>
@@ -445,6 +452,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
+          <last-edited>org.junit.jupiter:junit-jupiter-api:5.4.0</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
