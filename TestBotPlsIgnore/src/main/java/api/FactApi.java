@@ -1,3 +1,5 @@
+package api;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -8,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class FactRetriever {
+public class FactApi {
     public String getFact() {
         StringBuilder result = new StringBuilder();
         String fact = "";
@@ -29,8 +31,6 @@ public class FactRetriever {
             JSONObject jsonObj = new JSONObject(result.toString());
             fact = jsonObj.getString("text");
 
-        } catch (MalformedURLException e) {
-            fact = "Error retrieving fact";
         } catch (IOException e) {
             fact = "Error retrieving fact";
         }
