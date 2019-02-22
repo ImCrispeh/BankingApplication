@@ -21,12 +21,9 @@ public class Main extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         User author = event.getAuthor();
-        String msg = event.getMessage().getContentRaw().toLowerCase();
-        MessageChannel channel = event.getChannel();
-        List<User> mentions = event.getMessage().getMentionedUsers();
 
         if (!author.isBot()) {
-            ChannelMessageHandler channelMessageHandler = new ChannelMessageHandler(msg, channel, author, mentions);
+            ChannelMessageHandler channelMessageHandler = new ChannelMessageHandler(event);
             channelMessageHandler.handleMsg();
         }
     }

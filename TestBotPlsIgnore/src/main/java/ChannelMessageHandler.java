@@ -1,9 +1,13 @@
 import api.FactApi;
 import api.RedditApi;
 import api.TwitchApi;
+import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
+import javax.xml.soap.Text;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,16 +20,18 @@ public class ChannelMessageHandler {
     private TwitchApi twitchApi = new TwitchApi();
     private String botName = "Test Bot Pls Ignore";
 
+    private MessageReceivedEvent event;
     private String msg;
     private MessageChannel channel;
     private User author;
     private List<User> mentions;
 
-    public ChannelMessageHandler(String msg, MessageChannel channel, User author, List<User> mentions) {
-        this.msg = msg;
-        this.channel = channel;
-        this.author = author;
-        this.mentions = mentions;
+    public ChannelMessageHandler(MessageReceivedEvent event) {
+        this.event = event;
+        this.author = event.getAuthor();
+        this.msg = event.getMessage().getContentRaw().toLowerCase();
+        this.channel = event.getChannel();
+        this.mentions = event.getMessage().getMentionedUsers();
     }
 
     public void handleMsg() {
@@ -49,6 +55,21 @@ public class ChannelMessageHandler {
             searchRedditMsg(params);
         } else if (msg.startsWith("!twitch status") && msgSections.length == 3) {
             twitchStreamMsg(msgSections[2]);
+        } else if (msg.startsWith("!clear")) {
+            if (msgSections.length > 1 && isNumber(msgSections[1])) {
+                clearMsg(Integer.parseInt(msgSections[1]));
+            } else {
+                clearMsg(10);
+            }
+        }
+    }
+
+    private boolean isNumber(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 
@@ -98,7 +119,7 @@ public class ChannelMessageHandler {
                 }
             }
         } else {
-            channelMsg = "r/" + subreddit + " does not exist or cannot be accessed";
+            channelMsg = "No results found. r/" + subreddit + " may not exist or cannot be accessed";
         }
 
         channel.sendMessage(channelMsg).queue();
@@ -107,9 +128,10 @@ public class ChannelMessageHandler {
     private void searchRedditMsg(List<String> params) {
         String subreddit = params.get(0);
         String query = "";
-        for (String param : params) {
-            if (param.startsWith("q=")) {
-                query = param.substring(2);
+        if (params.size() > 1) {
+            query = params.get(1);
+            for (int i = 2; i < params.size(); i++) {
+                query += " " + params.get(i);
             }
         }
 
@@ -126,7 +148,7 @@ public class ChannelMessageHandler {
                 }
             }
         } else {
-            channelMsg = "r/" + subreddit + " does not exist or cannot be accessed";
+            channelMsg = "No results found. r/" + subreddit + " may not exist or cannot be accessed, or you may not have entered a query";
         }
 
         channel.sendMessage(channelMsg).queue();
@@ -165,5 +187,11 @@ public class ChannelMessageHandler {
         }
 
         channel.sendMessage(channelMsg).queue();
+    }
+
+    private void clearMsg(int amountOfMessages) {
+        List<Message> history = channel.getHistory().retrievePast(amountOfMessages + 1).complete();
+        System.out.println("clear command requested " + history.toString());
+        channel.purgeMessages(history);
     }
 }

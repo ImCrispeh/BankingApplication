@@ -1,5 +1,6 @@
 package api;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -13,7 +14,8 @@ import java.util.Map;
 import static api.MapConstants.*;
 
 public class TwitchApi {
-    private final String CLIENT_ID = "npqha81wxki9i2ozgebyylxj2ka9yz";
+
+    private final String CLIENT_ID = new KeyLoader().loadKey("TWITCH_CLIENT_ID");
     private final String CLIENT_ID_KEY = "Client-ID";
     private final String STREAM_KEY = "stream";
     private final String GAME_KEY = "game";
@@ -27,7 +29,6 @@ public class TwitchApi {
 
     public Map<String, String> getStreamStatus(String channelName) {
         Map<String, String> streamStatus = new HashMap<>();
-
         StringBuilder builder = new StringBuilder(baseUrl);
 
         String searchUrl = builder

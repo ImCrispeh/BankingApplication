@@ -7,8 +7,10 @@ import javax.sound.midi.SysexMessage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,12 @@ public class RedditApi {
 
     public List<String> searchSubreddit(String subreddit, String query) {
         StringBuilder builder = new StringBuilder(baseUrl);
+
+        try {
+            query = URLEncoder.encode(query, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
         String searchUrl = builder
                 .append("/r/")
