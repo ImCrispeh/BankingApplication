@@ -1,14 +1,19 @@
 import api.FactApi;
 import api.RedditApi;
+import api.TwitchApi;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import static api.MapConstants.*;
 
 public class ChannelMessageHandler {
     private FactApi factApi = new FactApi();
     private RedditApi redditApi = new RedditApi();
+    private TwitchApi twitchApi = new TwitchApi();
     private String botName = "Test Bot Pls Ignore";
 
     private String msg;
@@ -33,7 +38,7 @@ public class ChannelMessageHandler {
         } else if (msg.startsWith("!fuck you") && mentions.size() > 0) {
             fuckYouMsg();
         } else if (msg.startsWith("!reddit top") && msgSections.length == 3) {
-            topRedditMsg(msg.split(" ")[2]);
+            topRedditMsg(msgSections[2]);
         } else if (msg.startsWith("!reddit search") && msgSections.length > 2) {
             List<String> params = new ArrayList<>();
 
@@ -42,6 +47,8 @@ public class ChannelMessageHandler {
             }
 
             searchRedditMsg(params);
+        } else if (msg.startsWith("!twitch status") && msgSections.length == 3) {
+            twitchStreamMsg(msgSections[2]);
         }
     }
 
@@ -58,38 +65,43 @@ public class ChannelMessageHandler {
     }
 
     private void fuckYouMsg() {
+        String channelMsg = "";
+
         if (doesContainName(mentions, botName)) {
-            channel.sendMessage("Fuck me? No, fuck you " + author.getName() + "!").queue();
+            channelMsg = "Fuck me? No, fuck you " + author.getName() + "!";
         } else {
-            String botMsg = "Yo " + mentions.get(0).getName();
+            channelMsg = "Yo " + mentions.get(0).getName();
 
             if (mentions.size() > 1) {
                 for (int i = 1; i < mentions.size() - 1; i++) {
-                    botMsg += (", " + mentions.get(i).getName());
+                    channelMsg += (", " + mentions.get(i).getName());
                 }
-                botMsg += " and " + mentions.get(mentions.size() - 1).getName();
+                channelMsg += " and " + mentions.get(mentions.size() - 1).getName();
             }
 
-            botMsg += ", you gonna take that?";
-            channel.sendMessage(botMsg).queue();
+            channelMsg += ", you gonna take that?";
         }
+
+        channel.sendMessage(channelMsg).queue();
     }
 
     private void topRedditMsg(String subreddit) {
         List<String> results = redditApi.topPostsSubreddit(subreddit);
+        String channelMsg = "";
         if (!results.isEmpty()) {
             if (results.contains("Error retrieving results")) {
-                channel.sendMessage("Error retrieving results").queue();
+                channelMsg = "Error retrieving results";
             } else {
-                String channelMsg = "Showing top 5 posts of r/" + subreddit;
+                channelMsg = "Showing top 5 posts of r/" + subreddit;
                 for (int i = 0; i < results.size(); i++) {
                     channelMsg += "\n\n" + results.get(i);
                 }
-                channel.sendMessage(channelMsg).queue();
             }
         } else {
-            channel.sendMessage("r/" + subreddit + " does not exist or cannot be accessed").queue();
+            channelMsg = "r/" + subreddit + " does not exist or cannot be accessed";
         }
+
+        channel.sendMessage(channelMsg).queue();
     }
 
     private void searchRedditMsg(List<String> params) {
@@ -102,19 +114,56 @@ public class ChannelMessageHandler {
         }
 
         List<String> results = redditApi.searchSubreddit(subreddit, query);
+        String channelMsg = "";
 
         if (!results.isEmpty()) {
             if (results.contains("Error retrieving results")) {
-                channel.sendMessage("Error retrieving results").queue();
+                channelMsg = "Error retrieving results";
             } else {
-                String channelMsg = "Showing search results for \"" + query + "\" in r/" + subreddit;
+                channelMsg = "Showing search results for \"" + query + "\" in r/" + subreddit;
                 for (int i = 0; i < results.size(); i++) {
                     channelMsg += "\n\n" + results.get(i);
                 }
-                channel.sendMessage(channelMsg).queue();
             }
         } else {
-            channel.sendMessage("r/" + subreddit + " does not exist or cannot be accessed").queue();
+            channelMsg = "r/" + subreddit + " does not exist or cannot be accessed";
         }
+
+        channel.sendMessage(channelMsg).queue();
+    }
+
+    private void twitchStreamMsg(String channelName) {
+        Map<String, String> streamStatus = twitchApi.getStreamStatus(channelName);
+
+        String channelMsg = "";
+
+        if (streamStatus.get(STATUS).equals("Error retrieving stream")) {
+            channelMsg = streamStatus.get(STATUS);
+        } else if (streamStatus.get(STATUS).equals("null")) {
+            channelMsg = channelName + " does not exist";
+        } else if (streamStatus.get(STATUS).equals("offline")) {
+            String name = streamStatus.get(NAME);
+            String game = streamStatus.get(GAME);
+            String url = streamStatus.get(URL);
+            String title = streamStatus.get(TITLE);
+
+            channelMsg = name + " is not currently live :("
+                    + "\nLast seen playing: " + game + " [" + title + "]"
+                    + "\nStream link: " + url;
+        } else {
+            String name = streamStatus.get(NAME);
+            String viewers = streamStatus.get(VIEWERS);
+            String game = streamStatus.get(GAME);
+            String url = streamStatus.get(URL);
+            String title = streamStatus.get(TITLE);
+
+            channelMsg = name + " is currently live!"
+                    + "\nTitle: " + title
+                    + "\nCurrently playing: " + game
+                    + "\nViewers: " + viewers
+                    + "\nStream link: " + url;
+        }
+
+        channel.sendMessage(channelMsg).queue();
     }
 }

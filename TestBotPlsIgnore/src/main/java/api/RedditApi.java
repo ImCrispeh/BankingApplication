@@ -13,10 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RedditApi {
-    private String DATA_KEY = "data";
-    private String CHILDREN_KEY = "children";
-    private String PERMALINK_KEY = "permalink";
-    private String TITLE_KEY = "title";
+    private final String DATA_KEY = "data";
+    private final String CHILDREN_KEY = "children";
+    private final String PERMALINK_KEY = "permalink";
+    private final String TITLE_KEY = "title";
+    private final String USER_AGENT = "User-agent";
+    private final String USER_AGENT_PARAM = "Test Bot Pls Ignore";
     private String baseUrl = "https://www.reddit.com";
 
     public List<String> searchSubreddit(String subreddit, String query) {
@@ -83,7 +85,7 @@ public class RedditApi {
             url = new URL(searchUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
-            conn.setRequestProperty("User-agent", "Test Bot Pls Ignore");
+            conn.setRequestProperty(USER_AGENT, USER_AGENT_PARAM);
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line;
             while ((line = br.readLine()) != null) {
