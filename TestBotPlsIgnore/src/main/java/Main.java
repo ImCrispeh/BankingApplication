@@ -7,11 +7,12 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import javax.security.auth.login.LoginException;
 import java.util.List;
+import api.KeyLoader;
 
 public class Main extends ListenerAdapter {
 
     public static void main(String[] args) throws LoginException, InterruptedException {
-        String token = "NTQ3NjM5NzY0MzgwMjg2OTkz.D05tAQ.2o8zDSBBTzL1uer_iMY1Z_FPVIY";
+        String token = new KeyLoader().loadKey("JDA_TOKEN");
         JDA jda = new JDABuilder(token)
                 .addEventListener(new Main())
                 .build();

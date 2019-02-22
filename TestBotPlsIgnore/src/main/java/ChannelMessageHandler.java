@@ -1,10 +1,7 @@
 import api.FactApi;
 import api.RedditApi;
 import api.TwitchApi;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import javax.xml.soap.Text;
@@ -39,8 +36,12 @@ public class ChannelMessageHandler {
 
         if (msg.equals("!marco")) {
             marcoMsg();
-        } else if (msg.equals("!fact")) {
-            factMsg();
+        } else if (msg.startsWith("!fact")) {
+            if (msgSections.length > 1 && isNumber(msgSections[1])) {
+                factMsg(Integer.parseInt(msgSections[1]));
+            } else {
+                factMsg(1);
+            }
         } else if (msg.startsWith("!fuck you") && mentions.size() > 0) {
             fuckYouMsg();
         } else if (msg.startsWith("!reddit top") && msgSections.length == 3) {
@@ -61,6 +62,12 @@ public class ChannelMessageHandler {
             } else {
                 clearMsg(10);
             }
+        } else if (msg.startsWith("!reddit random") && msgSections.length == 3) {
+            rule34Msg(msgSections[2]);
+        } else if (msg.equals("!commands")) {
+            commandMsg();
+        } else if (msg.equals("!poggers")) {
+            poggersMsg();
         }
     }
 
@@ -77,12 +84,43 @@ public class ChannelMessageHandler {
         return users.stream().anyMatch(User -> User.getName().equals(name));
     }
 
+    private void commandMsg() {
+        String channelMsg =
+                "Commands are not case sensitive. <required> [optional]"
+                + "\n`!marco`"
+                + "\n`!fact [amount]`"
+                + "\n`!fuck you <1 or more mentions>`"
+                + "\n`!reddit top <subreddit>`"
+                + "\n`!reddit search <subreddit> <query>`"
+                + "\n`!reddit random <subreddit>`"
+                + "\n`!twitch status <channel>`"
+                + "\n`!poggers`"
+                + "\n`!clear <amount>`";
+
+        channel.sendMessage(channelMsg).queue();
+    }
+
     private void marcoMsg() {
         channel.sendMessage("Polo!").queue();
     }
 
-    private void factMsg() {
-        channel.sendMessage(factApi.getFact()).queue();
+    private void factMsg(int amountOfFacts) {
+        if (amountOfFacts > 10) {
+            amountOfFacts = 10;
+        }
+
+        channel.sendMessage("Retrieving " + amountOfFacts + " random facts... (max 10)").queue();
+        List<String> facts = new ArrayList<String>();
+        for (int i = 0; i < amountOfFacts; i++) {
+            facts.add(factApi.getFact());
+        }
+
+        StringBuilder channelMsg = new StringBuilder(facts.get(0));
+        for (int i = 1; i < facts.size(); i++) {
+            channelMsg.append("\n").append(facts.get(i));
+        }
+
+        channel.sendMessage(channelMsg).queue();
     }
 
     private void fuckYouMsg() {
@@ -190,8 +228,27 @@ public class ChannelMessageHandler {
     }
 
     private void clearMsg(int amountOfMessages) {
+        if (amountOfMessages >= 100) {
+            amountOfMessages = 99;
+        }
         List<Message> history = channel.getHistory().retrievePast(amountOfMessages + 1).complete();
         System.out.println("clear command requested " + history.toString());
         channel.purgeMessages(history);
+    }
+
+    private void rule34Msg(String subreddit) {
+        List<String> results = redditApi.randomRule34(subreddit);
+        channel.sendMessage(results.get(0)).queue();
+
+        if (results.size() > 1) {
+            channel.sendMessage(results.get(1)).queue();
+        }
+    }
+
+    private void poggersMsg() {
+        Message eventMsg = event.getMessage();
+        eventMsg.addReaction("\uD83C\uDDF5").queue();
+        eventMsg.addReaction("\uD83C\uDDF4").queue();
+        eventMsg.addReaction("\uD83C\uDDEC").queue();
     }
 }
