@@ -1,12 +1,11 @@
 import api.FactApi;
 import api.RedditApi;
 import api.TwitchApi;
+import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-import javax.xml.soap.Text;
 import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -66,13 +65,17 @@ public class ChannelMessageHandler {
                 clearMsg(10);
             }
         } else if (msg.startsWith("!reddit random") && msgSections.length == 3) {
-            rule34Msg(msgSections[2]);
+            randomRedditMsg(msgSections[2]);
         } else if (msg.equals("!commands")) {
             commandMsg();
         } else if (msg.equals("!poggers")) {
             poggersMsg();
         } else if (msg.equals("!thinking")) {
             thinkingMsg();
+        } else if (msg.equals("!stupid bot")) {
+            stupidMsg();
+        } else if (msg.equals("!baka bot")) {
+            bakaMsg();
         }
     }
 
@@ -110,6 +113,8 @@ public class ChannelMessageHandler {
                 + "\n`!twitch status <channel>`"
                 + "\n`!poggers`"
                 + "\n`!thinking`"
+                + "\n`!stupid bot`"
+                + "\n`!baka bot`"
                 + "\n`!clear <amount>`";
 
         channel.sendMessage(channelMsg).queue();
@@ -166,7 +171,7 @@ public class ChannelMessageHandler {
             if (results.contains("Error retrieving results")) {
                 channelMsg = "Error retrieving results";
             } else {
-                channelMsg = "Showing 5 posts of r/" + subreddit + "under " + filter;
+                channelMsg = "Showing 5 posts of r/" + subreddit + " under " + filter;
                 for (int i = 0; i < results.size(); i++) {
                     channelMsg += "\n\n" + results.get(i);
                 }
@@ -251,12 +256,16 @@ public class ChannelMessageHandler {
         channel.purgeMessages(history);
     }
 
-    private void rule34Msg(String subreddit) {
-        List<String> results = redditApi.randomRule34(subreddit);
-        channel.sendMessage(results.get(0)).queue();
+    private void randomRedditMsg(String subreddit) {
+        List<String> results = redditApi.randomPost(subreddit);
+        if (!results.isEmpty()) {
+            channel.sendMessage(results.get(0)).queue();
 
-        if (results.size() > 1) {
-            channel.sendMessage(results.get(1)).queue();
+            if (results.size() > 1) {
+                channel.sendMessage(results.get(1)).queue();
+            }
+        } else {
+            channel.sendMessage("No results found. r/" + subreddit + " may not exist or cannot be accessed").queue();
         }
     }
 
@@ -269,5 +278,17 @@ public class ChannelMessageHandler {
 
     private void thinkingMsg() {
         channel.sendFile(new File("thinking.gif")).queue();
+    }
+
+    private void stupidMsg() {
+        String channelMsg = "What the fuck did you just fucking say about me, you little bitch? I’ll have you know I graduated top of my class in the Navy Seals, and I’ve been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I’m the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You’re fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that’s just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little “clever” comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn’t, you didn’t, and now you’re paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You’re fucking dead, kiddo.";
+        MessageBuilder builder = new MessageBuilder(channelMsg).setTTS(true);
+        channel.sendMessage(builder.build()).queue();
+    }
+
+    private void bakaMsg() {
+        String channelMsg = "Nani the fuck did you just fucking iimasu about watashi, you chiisai bitch desuka? Watashi’ll have anata know that watashi graduated top of my class in Nihongo 3, and watashi’ve been involved in iroirona Nihongo tutoring sessions, and watashi have over sanbyaku perfect test scores. Watashi am trained in kanji, and watashi is the top letter writer in all of southern California. Anata are nothing to watashi but just another weaboo. Watashi will korosu anata the fuck out with vocabulary the likes of which has never been mimasu’d before on this continent, mark watashino fucking words. Anata thinks anata can get away with hanashimasing that kuso to watashi over the intaaneto? Omou again, fucker. As we hanashimasu, watashi am contacting watashino secret netto of otakus across the USA, and anatano IP is being traced right now so you better junbishimasu for the ame, ujimushi. The ame that korosu’s the pathetic chiisai thing anata calls anatano life. You’re fucking shinimashita’d, akachan.";
+        MessageBuilder builder = new MessageBuilder(channelMsg).setTTS(true);
+        channel.sendMessage(builder.build()).queue();
     }
 }

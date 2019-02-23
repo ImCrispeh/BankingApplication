@@ -89,7 +89,7 @@ public class RedditApi {
         return results;
     }
 
-    public List<String> randomRule34(String subreddit) {
+    public List<String> randomPost(String subreddit) {
         StringBuilder builder = new StringBuilder(oldBaseUrl);
 
         String searchUrl = builder
@@ -159,21 +159,22 @@ public class RedditApi {
                 result.append(line);
             }
 
-            JSONObject baseObj = new JSONObject(new JSONArray(result.toString()).getJSONObject(0).toString());
-            JSONArray dataChildrenArray = new JSONArray(baseObj.getJSONObject(DATA_KEY).getJSONArray(CHILDREN_KEY).toString());
+            if (result.toString().startsWith("[")) {
+                JSONObject baseObj = new JSONObject(new JSONArray(result.toString()).getJSONObject(0).toString());
+                JSONArray dataChildrenArray = new JSONArray(baseObj.getJSONObject(DATA_KEY).getJSONArray(CHILDREN_KEY).toString());
 
-            JSONObject childDataObj = new JSONObject(dataChildrenArray.getJSONObject(0).getJSONObject(DATA_KEY).toString());
-            String permalink = childDataObj.getString(PERMALINK_KEY);
-            String title = childDataObj.getString(TITLE_KEY);
-            String resultUrl = baseUrl + permalink;
-            String postDesc = title + "\n" + resultUrl;
-            results.add(postDesc);
+                JSONObject childDataObj = new JSONObject(dataChildrenArray.getJSONObject(0).getJSONObject(DATA_KEY).toString());
+                String permalink = childDataObj.getString(PERMALINK_KEY);
+                String title = childDataObj.getString(TITLE_KEY);
+                String resultUrl = baseUrl + permalink;
+                String postDesc = title + "\n" + resultUrl;
+                results.add(postDesc);
 
-            String urlData = childDataObj.getString(URL_KEY);
-            if (!urlData.contains(permalink)) {
-                results.add(urlData);
+                String urlData = childDataObj.getString(URL_KEY);
+                if (!urlData.contains(permalink)) {
+                    results.add(urlData);
+                }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
             results.add("Error retrieving results");
