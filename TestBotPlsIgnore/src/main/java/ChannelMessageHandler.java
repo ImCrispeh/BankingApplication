@@ -5,6 +5,8 @@ import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import javax.xml.soap.Text;
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,7 @@ public class ChannelMessageHandler {
     private RedditApi redditApi = new RedditApi();
     private TwitchApi twitchApi = new TwitchApi();
     private String botName = "Test Bot Pls Ignore";
+    private String[] redditFilters = { "top", "new", "hot", "controversial", "rising" };
 
     private MessageReceivedEvent event;
     private String msg;
@@ -44,8 +47,8 @@ public class ChannelMessageHandler {
             }
         } else if (msg.startsWith("!fuck you") && mentions.size() > 0) {
             fuckYouMsg();
-        } else if (msg.startsWith("!reddit top") && msgSections.length == 3) {
-            topRedditMsg(msgSections[2]);
+        } else if (msg.startsWith("!reddit") && msgSections.length == 3 && isFilter(msgSections[1])) {
+            filterRedditMsg(msgSections[2], msgSections[1]);
         } else if (msg.startsWith("!reddit search") && msgSections.length > 2) {
             List<String> params = new ArrayList<>();
 
@@ -68,6 +71,8 @@ public class ChannelMessageHandler {
             commandMsg();
         } else if (msg.equals("!poggers")) {
             poggersMsg();
+        } else if (msg.equals("!thinking")) {
+            thinkingMsg();
         }
     }
 
@@ -80,21 +85,31 @@ public class ChannelMessageHandler {
         }
     }
 
+    private boolean isFilter(String input) {
+        for (String filter : redditFilters) {
+            if (filter.equals(input)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private boolean doesContainName(List<User> users, String name) {
         return users.stream().anyMatch(User -> User.getName().equals(name));
     }
 
     private void commandMsg() {
-        String channelMsg =
-                "Commands are not case sensitive. <required> [optional]"
+        String channelMsg = "Commands are not case sensitive. <required> [optional]"
                 + "\n`!marco`"
                 + "\n`!fact [amount]`"
                 + "\n`!fuck you <1 or more mentions>`"
-                + "\n`!reddit top <subreddit>`"
+                + "\n`!reddit <filter> <subreddit> (filters: top, new, hot, controversial, rising)`"
                 + "\n`!reddit search <subreddit> <query>`"
                 + "\n`!reddit random <subreddit>`"
                 + "\n`!twitch status <channel>`"
                 + "\n`!poggers`"
+                + "\n`!thinking`"
                 + "\n`!clear <amount>`";
 
         channel.sendMessage(channelMsg).queue();
@@ -144,14 +159,14 @@ public class ChannelMessageHandler {
         channel.sendMessage(channelMsg).queue();
     }
 
-    private void topRedditMsg(String subreddit) {
-        List<String> results = redditApi.topPostsSubreddit(subreddit);
+    private void filterRedditMsg(String subreddit, String filter) {
+        List<String> results = redditApi.filterPostsSubreddit(subreddit, filter);
         String channelMsg = "";
         if (!results.isEmpty()) {
             if (results.contains("Error retrieving results")) {
                 channelMsg = "Error retrieving results";
             } else {
-                channelMsg = "Showing top 5 posts of r/" + subreddit;
+                channelMsg = "Showing 5 posts of r/" + subreddit + "under " + filter;
                 for (int i = 0; i < results.size(); i++) {
                     channelMsg += "\n\n" + results.get(i);
                 }
@@ -250,5 +265,9 @@ public class ChannelMessageHandler {
         eventMsg.addReaction("\uD83C\uDDF5").queue();
         eventMsg.addReaction("\uD83C\uDDF4").queue();
         eventMsg.addReaction("\uD83C\uDDEC").queue();
+    }
+
+    private void thinkingMsg() {
+        channel.sendFile(new File("thinking.gif")).queue();
     }
 }

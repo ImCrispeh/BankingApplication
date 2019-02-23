@@ -59,13 +59,15 @@ public class RedditApi {
         return results;
     }
 
-    public List<String> topPostsSubreddit(String subreddit) {
+    public List<String> filterPostsSubreddit(String subreddit, String filter) {
         StringBuilder builder = new StringBuilder(baseUrl);
 
         String searchUrl = builder
                 .append("/r/")
                 .append(subreddit)
-                .append("/top.json?t=all&limit=5")
+                .append("/")
+                .append(filter)
+                .append(".json?t=all&limit=5")
                 .toString();
 
         builder = new StringBuilder(baseUrl);
@@ -73,7 +75,9 @@ public class RedditApi {
         String moreUrl = builder
                 .append("/r/")
                 .append(subreddit)
-                .append("/top?t=all")
+                .append("/")
+                .append(filter)
+                .append("?t=all")
                 .toString();
 
         List<String> results = resultsReturner(searchUrl);
@@ -118,7 +122,7 @@ public class RedditApi {
                 result.append(line);
             }
 
-            JSONObject baseObj = new JSONObject(new JSONArray(result.toString()).getJSONObject(0).toString());
+            JSONObject baseObj = new JSONObject(result.toString());
             JSONArray dataChildrenArray = new JSONArray(baseObj.getJSONObject(DATA_KEY).getJSONArray(CHILDREN_KEY).toString());
 
             for (int i = 0; i < dataChildrenArray.length(); i++) {
